@@ -122,12 +122,23 @@ public class ArraysPractice {
 //Output: "Oi! Sheep number 1! You are about to be eaten by a wolf!"
 //Input: ["sheep", "sheep", "wolf"]
 //Output: "Pls go away and stop eating my sheep"
+
     public static String warnTheSheep(String[] array) {
         Collections.reverse(Arrays.asList(array));
         int pos = Arrays.asList(array).indexOf("wolf");
         return pos == 0 ? "Pls go away and stop eating my sheep" : "Oi! Sheep number "
                 + pos + "! You are about to be eaten by a wolf!";
     }
+// --------------------------------------------------------------------------------------- //
+//Input: Array of elements
+//["h","o","l","a"]
+//Output: String with comma delimited elements of the array in th same order.
+//"h,o,l,a"
+
+    public static String printArray(Object[] array) {
+        return Arrays.stream(array).collect(String.join(","));
+    }
+// ----------------------------------------------------------------------------------------- //
 
 }
 
