@@ -1,7 +1,5 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -136,9 +134,67 @@ public class ArraysPractice {
 //"h,o,l,a"
 
     public static String printArray(Object[] array) {
-        return Arrays.stream(array).collect(String.join(","));
+        return Arrays.stream(array).map(Object::toString)
+                .collect(Collectors.joining(","));
     }
 // ----------------------------------------------------------------------------------------- //
+    public static int findAverage(int[] nums) {
+        return (int) Arrays.stream(nums).average().orElse(0);
+    }
+// ----------------------------------------------------------------------------------------- //
+    //In descending order: [10, 2, 1]
+    //Sum: (10 - 2) + (2 - 1) = 8 + 1 = 9
+    public static int sumOfDifferences(int[] arr) {
+        if (arr.length < 2) {
+            return 0;
+        }
+        int min = arr[0];
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+        return max - min;
+    }
+// ----------------------------------------------------------------------------------------- //
+    class Swapper{
+        public Object[] arguments;
 
+        public Swapper(final Object[] args){
+            arguments=args;
+        }
+
+        public void swapValues() {
+            Object temp = arguments[0];
+            arguments[0] = arguments[1];
+            arguments[1] = temp;
+        }
+    }
+// ------------------------------------------------------------------------------------------- //
+    public static long stairsIn20(int[][] stairs) {
+        long sum = 0L;
+        for (int[] day : stairs) {
+            for (int s : day) {
+                sum += s;
+            }
+        }
+        return sum * 20;
+    }
+// ------------------------------------------------------------------------------------------ //
+    static boolean all(int[] list, IntPredicate predicate) {
+        return IntStream.of(list).allMatch(predicate);
+    }
+// ------------------------------------------------------------------------------------------ //
+     public static int[] mergeArrays(int[] first, int[] second) {
+         return IntStream.concat(Arrays.stream(first), Arrays.stream(second))
+                .distinct()
+                .sorted()
+                .toArray();
+    }
+// ------------------------------------------------------------------------------------------- //
 }
 
